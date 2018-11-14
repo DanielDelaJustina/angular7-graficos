@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable , throwError} from 'rxjs';
 import { map, catchError, flatMap } from 'rxjs/operators';
@@ -13,10 +13,10 @@ export class CategoryService {
 
   private apiPath = 'api/categories';
 
-  constructor(private httpCliente: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Category[]> {
-    return this.httpCliente.get(this.apiPath).pipe(
+    return this.http.get(this.apiPath).pipe(
       catchError(this.handleError),
       map(this.jsonDataToCaterories)
     );
@@ -26,14 +26,14 @@ export class CategoryService {
 
     const url = `${this.apiPath}/${id}`;
 
-    return this.httpCliente.get(url).pipe(
+    return this.http.get(url).pipe(
       catchError(this.handleError),
       map(this.jsonDataToCategory)
     );
   }
 
   create(category: Category): Observable<Category> {
-    return this.httpCliente.post(this.apiPath, category).pipe(
+    return this.http.post(this.apiPath, category).pipe(
       catchError(this.handleError),
       map(this.jsonDataToCategory)
     );
@@ -42,7 +42,7 @@ export class CategoryService {
   update(category: Category): Observable<Category> {
     const url = `${this.apiPath}/${category.id}`;
 
-    return this.httpCliente.put(url, category).pipe(
+    return this.http.put(url, category).pipe(
       catchError(this.handleError),
       map(() => category)
     );
@@ -51,7 +51,7 @@ export class CategoryService {
   delete(id: number): Observable<any> {
     const url = `${this.apiPath}/${id}`;
 
-    return this.httpCliente.delete(url).pipe(
+    return this.http.delete(url).pipe(
       catchError(this.handleError),
       map(() => null)
     );
@@ -60,7 +60,7 @@ export class CategoryService {
   // Metodos privados
   private jsonDataToCaterories(jsonData: any): Category[] {
     const categories: Category[] = [];
-    jsonData.array.forEach(element => categories.push(element as Category));
+    jsonData.forEach(element => categories.push(element as Category));
     return categories;
   }
 
