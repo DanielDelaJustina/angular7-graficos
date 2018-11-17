@@ -38,6 +38,7 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   }
 
   ngAfterContentChecked() {
+    this.setPageTitle();
   }
 
   // Private Méthods
@@ -69,6 +70,16 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
         },
         (error) => alert('Ocorreu Erro no servidor, tente mais tarde.')
       );
+    }
+  }
+
+  private setPageTitle() {
+    if (this.currentAction = 'new') {
+      this.pageTitle = 'Cadastro de Nova Categoria';
+    } else {
+      const categoryName = this.category.name || '';
+      this.pageTitle = 'Editando Categoria: ' + categoryName;
+    }
     }
   }
 
