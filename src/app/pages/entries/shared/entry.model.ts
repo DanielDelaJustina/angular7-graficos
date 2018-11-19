@@ -11,14 +11,14 @@ export class Entry {
         public paid?: boolean,
         public categoryId?: number,
         public category?: Category
-    ) {}
+    ) { }
 
     static types = {
         expense: 'Desepesa',
         renevue: 'Receita'
     };
-
-    get paidText(): String {
+    
+    /*get paidText(): string {
         return this.paid ? 'Pago' : 'Pendente';
-    }
+    }*/
 }
