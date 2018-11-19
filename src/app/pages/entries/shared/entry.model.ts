@@ -18,7 +18,7 @@ export class Entry {
         renevue: 'Receita'
     };
     
-    /*get paidText(): string {
-        return this.paid ? 'Pago' : 'Pendente';
-    }*/
+    // get paidText(): string {
+    //    return this.paid ? 'Pago' : 'Pendente';
+    // }
 }
