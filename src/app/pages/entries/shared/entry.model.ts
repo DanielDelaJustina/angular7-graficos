@@ -17,8 +17,8 @@ export class Entry {
         expense: 'Desepesa',
         renevue: 'Receita'
     };
-    
-    // get paidText(): string {
-    //    return this.paid ? 'Pago' : 'Pendente';
-    // }
+
+     get paidText(): string {
+        return this.paid ? 'Pago' : 'Pendente';
+     }
 }
