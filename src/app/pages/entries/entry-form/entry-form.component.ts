@@ -9,6 +9,9 @@ import { switchMap } from 'rxjs/operators';
 
 import toastr from 'toastr';
 
+import { Category } from '../../categories/shared/category.model';
+import { CategoryService } from '../../categories/shared/category.service';
+
 @Component({
   selector: 'app-entry-form',
   templateUrl: './entry-form.component.html',
@@ -22,28 +25,43 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   serverErrorMessagens: string[] = null;
   submittingForm = false;
   entry: Entry = new Entry();
+  categories: Array<Category>;
 
   imaskConfig = {
     mask: Number,
     scale: 2,
-    thousandsSeparator: '',
+    thousandsSeparator: '.',
     padFractionalZeros: true,
     normalizeZeros: true,
     radix: ','
+  };
+
+  ptBR = {
+    firstDayOfWeek: 0,
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quita', 'Sexta', 'Sabado'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
+            monthNames: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
+             'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' ],
+            monthNamesShort: [ 'Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 
+            'Sep', 'Out', 'Nov', 'Dez' ],
+            today: 'Hoje',
+            clear: 'Limpar'
   };
 
   constructor(
     private entryService: EntryService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit() {
-
     this.setCurrentAction();
     this.buildEntryForm();
     this.loadEntry();
+    this.loadCategories();
   }
 
   ngAfterContentChecked() {
@@ -58,6 +76,17 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     } else {
       this.updateEntry();
     }
+  }
+
+  get typeOptions(): Array<any> {
+    return Object.entries(Entry.types).map(
+      ([value, text]) => {
+        return {
+          text: text,
+          value: value
+        };
+      }
+    );
   }
 
   // Private Méthods
@@ -95,6 +124,12 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
         (error) => alert('Ocorreu Erro no servidor, tente mais tarde.')
       );
     }
+  }
+
+  private loadCategories() {
+    this.categoryService.getAll().subscribe(
+      categories => this.categories = categories
+    );
   }
 
   private setPageTitle() {
