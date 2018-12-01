@@ -30,7 +30,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   imaskConfig = {
     mask: Number,
     scale: 2,
-    thousandsSeparator: '.',
+    thousandsSeparator: '',
     padFractionalZeros: true,
     normalizeZeros: true,
     radix: ','
@@ -144,7 +144,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     private createEntry() {
       const entry: Entry = Object.assign(new Entry(), this.entryForm.value);
       this.entryService.create(entry).subscribe(
-        entr => this.actionsForSucess(entry),
+        entr => this.actionsForSucess(entr),
         error => this.actionsForErros(error)
       );
     }
