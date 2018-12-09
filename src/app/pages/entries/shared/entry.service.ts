@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class EntryService extends BaseResourceService<Entry> {
 
-  constructor(protected injector: Injector, private categoryService: CategoryService) { 
+  constructor(protected injector: Injector, private categoryService: CategoryService) {
     super('api/entries', injector, Entry.fromJson);
   }
 
