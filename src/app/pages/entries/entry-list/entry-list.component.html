@@ -13,7 +13,7 @@
   </div>
   <div class="col-md">
     <a routerLink="new" class="btn btn-success float-right">
-      + Novo Lançamento
+        <i class="pi pi-plus"></i>Novo Lançamento
     </a>  
   </div>
 </div>
@@ -45,8 +45,10 @@
         <span class="badge badge-light">{{entry.paidText}}</span>        
       </td>
       <td class="text-center">
-        <a [routerLink]="[entry.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-        <button (click)="deleteEntry(entry)" class="btn btn-outline-danger btn-sm">Excluir</button>
+        <a [routerLink]="[entry.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">
+            <i class="pi pi-pencil"></i>Editar</a>
+        <button (click)="deleteEntry(entry)" class="btn btn-outline-danger btn-sm">
+            <i class="pi pi-trash"></i>Excluir</button>
       </td>
     </tr>
   </tbody>
