@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     BreadCrumbComponent
   ],
   imports: [
+    RouterModule,
     CommonModule,
     ReactiveFormsModule
   ],
@@ -15,6 +17,7 @@ import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.compon
     // shared modules
     CommonModule,
     ReactiveFormsModule,
+    RouterModule,
 
     // shared components
     BreadCrumbComponent

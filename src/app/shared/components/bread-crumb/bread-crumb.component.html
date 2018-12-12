@@ -7,11 +7,11 @@
     <li *ngFor="let item of itens" class="breadcrumb-item" [class.active]="isTheLastItem(item)">
       
       <span *ngIf="isTheLastItem(item)">
-        {{item.text}}
+        {{item.texto}}
       </span>
 
       <a *ngIf="!isTheLastItem(item)" [routerLink]="item.link">
-        {{item.text}}
+        {{item.texto}}
       </a>
 
     </li>
