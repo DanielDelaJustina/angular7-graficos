@@ -93,10 +93,8 @@
               <select name="categoryId" id="categoryId" formControlName="categoryId" class="form-control">
                 <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
               </select>
-  
-              <div class="text-danger" *ngIf="resourceForm.get('categoryId').invalid && resourceForm.get('categoryId').touched">
-                <div *ngIf="resourceForm.get('categoryId').errors.required" >Dado Obrigatório</div>
-              </div>
+              
+              <app-form-field-error [form-control] = "resourceForm.get('categoryId')"></app-form-field-error>
             </div>
           
           <!--Description-->
