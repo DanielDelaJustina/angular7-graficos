@@ -4,9 +4,10 @@
       {{pageTitle}}
     </h1>    
   </div>
-  <div class="col-md text-right">
+  <div *ngIf="showButton" class="col-md text-right">
     <a [routerLink]="buttonLink" class="btn" [ngClass]="buttonClass">
-        <i class="pi" [ngClass]="iconClass"></i>{{buttonText}}
+        <i class="pi" [ngClass]="iconClass"></i>
+        {{buttonText}}
     </a>  
   </div>
 </div>
