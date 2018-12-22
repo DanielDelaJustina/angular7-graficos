@@ -46,7 +46,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   submitForm() {
     this.submittingForm = true;
 
-    if (this.currentAction === 'new') {
+    if (this.currentAction == 'new') {
       this.createResource();
     } else {
       this.updateResource();
@@ -55,7 +55,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
   // Private Méthods
   protected setCurrentAction() {
-    if (this.route.snapshot.url[0].path === 'new') {
+    if (this.route.snapshot.url[0].path == 'new') {
       this.currentAction = 'new';
     } else {
       this.currentAction = 'edit';
@@ -63,7 +63,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   }
 
   protected loadResource() {
-    if (this.currentAction === 'edit') {
+    if (this.currentAction == 'edit') {
       this.route.paramMap.pipe(
         switchMap(params => this.resourceService.getById(+params.get('id')))
       )
@@ -78,7 +78,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   }
 
   protected setPageTitle() {
-    if (this.currentAction === 'new') {
+    if (this.currentAction == 'new') {
       this.pageTitle = this.createPageTitle();
     } else {
       this.pageTitle = this.editionPageTitle();
@@ -127,7 +127,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
       toastr.error('ocorreu um erro ao processar a sua solicitação!');
       this.submittingForm = false;
 
-      if (error.status === 422) {
+      if (error.status == 422) {
         this.serverErrorMessagens = JSON.parse(error._body).errors;
       } else {
         this.serverErrorMessagens = ['Falha na comunicação com o servidor!'];
