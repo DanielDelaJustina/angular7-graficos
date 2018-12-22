@@ -21,7 +21,7 @@ export class BreadCrumbComponent implements OnInit {
 
   isTheLastItem(item: BreadCrumbItem): boolean {
     const index = this.itens.indexOf(item);
-    return index + 1 === this.itens.length;
+    return index + 1 == this.itens.length;
   }
 
 }

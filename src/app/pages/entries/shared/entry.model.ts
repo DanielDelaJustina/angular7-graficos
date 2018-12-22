@@ -8,7 +8,7 @@ export class Entry extends BaseResourceModel {
         public description?: String,
         public type?: String,
         public amount?: String,
-        public date?: String,
+        public date?: string,
         public paid?: boolean,
         public categoryId?: number,
         public category?: Category
